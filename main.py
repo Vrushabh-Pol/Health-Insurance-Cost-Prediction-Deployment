@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import datetime
 from sklearn.ensemble import GradientBoostingRegressor
-import pickle5 as pickle
+import  pickle
 
 # Load the pre-trained model using joblib
 model = pickle.load(open('model.pkl','rb'))
@@ -19,19 +19,30 @@ def main():
     st.write('')
     st.write('')
 
-    p1 = st.number_input('Enter Your Age:', 1.0, 120.0, step=1.0)
+    #p1 = st.number_input('Enter Your Age:', 1.0, 120.0, step=1.0)
+    p1 = st.slider("Enter Your Age : ",1,120)
 
-    s1 = st.selectbox('Enter Your Gender:', ('Male', 'Female'))
+
+#    s1 = st.selectbox('Enter Your Gender:', ('Male', 'Female'))
+#    if s1 == "Male":
+#        p4 = 1
+#    elif s1 == "Female":
+#        p4 = 0
+
+
+    s1 = st.radio("Select Your Gender : ", ('Male', 'Female'))
     if s1 == "Male":
-        p4 = 0
-    elif s1 == "Female":
         p4 = 1
+    elif s1 == "Female":
+        p4 = 0
 
     p5 = st.number_input('Enter Your BMI Value:', 1.0, 200.0, step=1.0)
 
-    p6 = st.number_input('How Many Children You Have:', 0.0, 20.0, step=1.0)
+    #p6 = st.number_input('How Many Children You Have:', 0.0, 20.0, step=1.0)
+    p6 = st.slider("How Many Children You Have : ",1,10)
 
-    s2 = st.selectbox('Enter Your Region:', ('southwest', 'southeast', 'northwest', 'northeast'))
+
+    s2 = st.selectbox('Select Your Region:', ('southwest', 'southeast', 'northwest', 'northeast'))
     if s2 == "southwest":
         p7 = 1
     elif s2 == "southeast":
@@ -59,7 +70,7 @@ def main():
         if st.button('Predict'):
             prediction = model.predict(customer)
             if prediction > 0:
-                st.success('Your Predicted Health Insurance Cost Is: Rs {:.2f}'.format(prediction[0]))
+                st.success('Your Predicted Health Insurance Cost Is: ${:.2f}'.format(prediction[0]))
             else:
                 st.warning("You Will Not Be Able To Get This Health Insurance!!")
     except Exception as e:
