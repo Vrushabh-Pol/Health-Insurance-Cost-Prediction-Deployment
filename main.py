@@ -70,7 +70,7 @@ def main():
         if st.button('Predict'):
             prediction = model.predict(customer)
             if prediction > 0:
-                st.success('Your Predicted Health Insurance Cost Is: ${:.2f}'.format(prediction[0]))
+                st.success('Your Predicted Health Insurance Cost Is: Rs {:.2f}'.format(prediction[0]))
             else:
                 st.warning("You Will Not Be Able To Get This Health Insurance!!")
     except Exception as e:
